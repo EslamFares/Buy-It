@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "15734353922",
+    "firebase_url": "https://buy-it-52a11.firebaseio.com",
+    "project_id": "buy-it-52a11",
+    "storage_bucket": "buy-it-52a11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15734353922:android:fd27f6b7f1c9a9aedeb71b",
+        "android_client_info": {
+          "package_name": "com.eslamfares.buyit_ecommerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15734353922-oni2ui8i90lpk9b0biuqenmtm8e0t0h3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCscwq38nPAOmTPGJ21dPX_FO3kk3gyu2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15734353922-oni2ui8i90lpk9b0biuqenmtm8e0t0h3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
