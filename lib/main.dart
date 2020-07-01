@@ -1,7 +1,8 @@
 import 'package:buyit_ecommerce_app/provider/Admin_mode.dart';
 import 'package:buyit_ecommerce_app/provider/modelHud.dart';
-import 'package:buyit_ecommerce_app/screens/admin_home.dart';
-import 'package:buyit_ecommerce_app/screens/home_screen.dart';
+import 'package:buyit_ecommerce_app/screens/admin/add_product.dart';
+import 'file:///C:/Users/Eng%20Eslam/AndroidStudioProjects/buyit_ecommerce_app/lib/screens/admin/admin_home.dart';
+import 'file:///C:/Users/Eng%20Eslam/AndroidStudioProjects/buyit_ecommerce_app/lib/screens/user/home_screen.dart';
 import 'package:buyit_ecommerce_app/screens/login_screen.dart';
 import 'package:buyit_ecommerce_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           SignUPScreen.id: (context) => SignUPScreen(),
           HomePage.id: (context) => HomePage(),
           AdminHome.id: (context) => AdminHome(),
+          AddProduct.id: (context) => AddProduct(),
         },
       ),
     );

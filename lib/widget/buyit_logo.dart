@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 
 class BuyitLogo extends StatelessWidget {
-  const BuyitLogo({Key key, @required this.heightScreen,}) : super(key: key);
+  const BuyitLogo({
+    Key key,
+    @required this.heightScreen,
+  }) : super(key: key);
 
   final int heightScreen;
 
@@ -19,38 +23,33 @@ class BuyitLogo extends StatelessWidget {
           children: <Widget>[
             Hero(
               tag: 'hero',
-              child: Image(height: 140,width: 140,
+              child: Image(
+                height: 140,
+                width: 140,
                 image: AssetImage('img/icons/cart_icon.png'),
               ),
             ),
-
             Positioned(
               bottom: 0,
-              left: MediaQuery.of(context).size.width*.43,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Buy' ,
-                    style: TextStyle(
-                        fontFamily: 'Pacifico',
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        color:Colors.black ,
-                        letterSpacing: 1.5),
-                  ),
+              left: MediaQuery.of(context).size.width * .43,
+              // make text take 2 color
+              child: Text(
+                'Buy it',
+                style: TextStyle(
+                    foreground: Paint()
+                      ..shader = ui.Gradient.linear(
+                        const Offset(100, 39),
+                        const Offset(150, 23),
+                        <Color>[
+                          Color(0xff0052c2),
+                          Colors.black,
 
-                  Text(
-                    'it',
-                    style: TextStyle(
-                        fontFamily: 'Pacifico',
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff0052c2),//003481
-                        letterSpacing: 1.5),
-                  ),
-                ],
+                        ],
+                      ),
+                    fontFamily: 'Pacifico',
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1.5),
               ),
             ),
           ],

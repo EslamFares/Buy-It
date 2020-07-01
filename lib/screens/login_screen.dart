@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
-import 'admin_home.dart';
-import 'home_screen.dart';
+import 'admin/admin_home.dart';
+import 'user/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   static String id = 'LoginScreen';
@@ -19,7 +19,6 @@ class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   bool isAdmin = false;
   final adminPassword = 'Admin1234';
-  static int groupval = 1;
   @override
   Widget build(BuildContext context) {
     int heightScreen = MediaQuery.of(context).size.height.toInt();

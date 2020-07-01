@@ -24,7 +24,8 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
-      child: TextFormField(
+      child: TextFormField(minLines: 1,
+        maxLines: 2,
         // ignore: missing_return
         validator: (value) {
           if (value.isEmpty) {
