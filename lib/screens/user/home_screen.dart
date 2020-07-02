@@ -1,4 +1,4 @@
-import 'package:buyit_ecommerce_app/colors.dart';
+import 'package:buyit_ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   static String id = 'HomeScreen';

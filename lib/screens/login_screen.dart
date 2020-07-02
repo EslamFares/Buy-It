@@ -1,4 +1,4 @@
-import 'package:buyit_ecommerce_app/colors.dart';
+import 'package:buyit_ecommerce_app/constants.dart';
 import 'package:buyit_ecommerce_app/provider/Admin_mode.dart';
 import 'package:buyit_ecommerce_app/provider/modelHud.dart';
 import 'package:buyit_ecommerce_app/screens/signup_screen.dart';
@@ -41,7 +41,6 @@ class LoginScreen extends StatelessWidget {
                 },
                 hint: 'Enter Your Email',
                 icon: Icons.email,
-                hide: false,
               ),
               SizedBox(
                 height: 10,
@@ -52,7 +51,6 @@ class LoginScreen extends StatelessWidget {
                 },
                 hint: 'Enter Your Password',
                 icon: Icons.lock,
-                hide: true,
               ),
               SizedBox(height: 20),
               Padding(

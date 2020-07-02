@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../colors.dart';
+import '../constants.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
-  final bool hide;
   final Function onClick;
   String _errorMessage(String str) {
     switch (hint) {
@@ -18,21 +17,22 @@ class CustomTextField extends StatelessWidget {
   }
 
   const CustomTextField(
-      {@required this.hint, this.icon, this.hide, @required this.onClick});
+      {@required this.hint, this.icon, @required this.onClick});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
-      child: TextFormField(minLines: 1,
-        maxLines: 2,
+      child: TextFormField(
+        minLines: 1,
+        maxLines:hint=='Enter Your Password'||hint=='Enter Your Name'||hint=='Enter Your Email'?1:3 ,
         // ignore: missing_return
         validator: (value) {
           if (value.isEmpty) {
             return _errorMessage(hint);
           }
         },
-        obscureText: hide,
+        obscureText: hint=='Enter Your Password'?true:false,
         onSaved: onClick,
         cursorColor: KMainColor,
         decoration: InputDecoration(

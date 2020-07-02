@@ -6,7 +6,7 @@ import 'package:buyit_ecommerce_app/widget/custom_textfeild.dart';
 import 'package:flutter/material.dart';
 import 'package:buyit_ecommerce_app/services/auth.dart';
 import 'package:flutter/services.dart';
-import '../colors.dart';
+import '../constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 
@@ -34,9 +34,10 @@ class SignUPScreen extends StatelessWidget {
                 height: heightScreen * .09,
               ),
               CustomTextField(
+                onClick: (value) {
+                },
                 hint: 'Enter Your Name',
                 icon: Icons.account_circle,
-                hide: false,
               ),
               SizedBox(
                 height: 10,
@@ -47,7 +48,6 @@ class SignUPScreen extends StatelessWidget {
                 },
                 hint: 'Enter Your Email',
                 icon: Icons.email,
-                hide: false,
               ),
               SizedBox(
                 height: 10,
@@ -58,7 +58,6 @@ class SignUPScreen extends StatelessWidget {
                 },
                 hint: 'Enter Your Password',
                 icon: Icons.lock,
-                hide: true,
               ),
               SizedBox(height: 20),
               Padding(

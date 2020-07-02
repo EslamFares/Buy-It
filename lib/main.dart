@@ -7,7 +7,7 @@ import 'package:buyit_ecommerce_app/screens/login_screen.dart';
 import 'package:buyit_ecommerce_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'screens/admin/edit_product.dart';
 void main() {
   runApp(MyApp());
 }
@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
           HomePage.id: (context) => HomePage(),
           AdminHome.id: (context) => AdminHome(),
           AddProduct.id: (context) => AddProduct(),
+          EditProduct.id: (context) => EditProduct(),
         },
       ),
     );
