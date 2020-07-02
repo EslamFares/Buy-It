@@ -18,6 +18,7 @@ class _EditProductState extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeData.dark().scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text('Edit Product'),
         backgroundColor: Colors.teal,
@@ -26,8 +27,8 @@ class _EditProductState extends State<EditProduct> {
       body: StreamBuilder<QuerySnapshot>(
           stream: _store.loadProduct(),
           builder: (context, snapshot) {
-            if(snapshot.hasData){
-              List<Product> products=[];
+            if (snapshot.hasData) {
+              List<Product> products = [];
               for (var doc in snapshot.data.documents) {
                 var data = doc.data;
                 products.add(Product(
@@ -38,20 +39,99 @@ class _EditProductState extends State<EditProduct> {
                     pPrice: data[kProductPrice]));
               }
 
-            return ListView.builder(
-              itemBuilder: (context, index) => Text(products[index].pName),
-              itemCount: products.length,
-            );}
-            else{
-             return Center(child: Column(
-               crossAxisAlignment: CrossAxisAlignment.center,
-               mainAxisAlignment: MainAxisAlignment.center,
-               children: <Widget>[
-                 Text('Loading...'),
-                 SizedBox(height: 5,),
-                 CircularProgressIndicator(),
-               ],
-             ));
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, childAspectRatio: .8),
+                itemBuilder: (context, index) => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  child: GestureDetector(
+                    //to detect th position of click in screen
+                    onTapUp: (details) {
+                      //dx is position from  left || dy is position from Top
+                     double dx=details.globalPosition.dx;
+                     double dy=details.globalPosition.dy;
+                     //dR is position from Right is come by (ScreenWidth-dX) || same to db 'Bottom'
+                     double dR =(MediaQuery.of(context).size.width)-dx;
+                     double dB =(MediaQuery.of(context).size.height)-dy;
+                      showMenu(context: context,
+                          position: RelativeRect.fromLTRB(dx, dy, dR, dB),
+                          items: [
+                        PopupMenuItem(
+                          child: Text('Edit'),
+                        ),
+                        PopupMenuItem(
+                          child: Text('Delete'),
+                        ),
+                      ]);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          border: Border.all(
+                            color: Colors.teal,
+                            width: 2,
+                          )),
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned.fill(
+                            child: Image(
+//                        fit: BoxFit.fill,
+                              image: AssetImage(products[index].pLocation),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+//                          child: Opacity(
+//                            opacity: .5,
+                            child: Container(
+                              height: 60,
+                              width: MediaQuery.of(context).size.width,
+                              color: ThemeData.dark()
+                                  .scaffoldBackgroundColor
+                                  .withOpacity(.5),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "Name: ${products[index].pName}",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Price: ${products[index].pPrice}\$',
+                                      style:
+                                          TextStyle(color: Colors.amberAccent),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+//                          ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                itemCount: products.length,
+              );
+            } else {
+              return Center(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Loading...'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  CircularProgressIndicator(),
+                ],
+              ));
             }
           }),
     );
