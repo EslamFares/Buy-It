@@ -48,21 +48,40 @@ class _EditProductState extends State<EditProduct> {
                     //to detect th position of click in screen
                     onTapUp: (details) {
                       //dx is position from  left || dy is position from Top
-                     double dx=details.globalPosition.dx;
-                     double dy=details.globalPosition.dy;
-                     //dR is position from Right is come by (ScreenWidth-dX) || same to db 'Bottom'
-                     double dR =(MediaQuery.of(context).size.width)-dx;
-                     double dB =(MediaQuery.of(context).size.height)-dy;
-                      showMenu(context: context,
+                      double dx = details.globalPosition.dx;
+                      double dy = details.globalPosition.dy;
+                      //dR is position from Right => (ScreenWidth-dX) || same to db 'Bottom'
+                      double dR = (MediaQuery.of(context).size.width) - dx;
+                      double dB = (MediaQuery.of(context).size.height) - dy;
+                      showMenu(
+                          context: context,
                           position: RelativeRect.fromLTRB(dx, dy, dR, dB),
                           items: [
-                        PopupMenuItem(
-                          child: Text('Edit'),
-                        ),
-                        PopupMenuItem(
-                          child: Text('Delete'),
-                        ),
-                      ]);
+                            MyPopMenuItem(
+                              onClick: (){
+                                print('edit is clicked');
+                              },
+                              child:Row(
+                              children: <Widget>[
+                                Icon(Icons.edit),
+                                SizedBox(width: 3,),
+                                Text('Edit'),
+                              ],
+                            ),
+                            ),
+                            MyPopMenuItem(
+                              onClick: (){
+                                print('delete is clicked');
+                              },
+                              child:Row(
+                                children: <Widget>[
+                                  Icon(Icons.delete),
+                                  SizedBox(width: 3,),
+                                  Text('Delete'),
+                                ],
+                              ),
+                            ),
+                          ]);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -135,5 +154,25 @@ class _EditProductState extends State<EditProduct> {
             }
           }),
     );
+  }
+}
+
+class MyPopMenuItem<T> extends PopupMenuItem<T> {
+  final Widget child;
+  final Function onClick;
+  MyPopMenuItem({@required this.onClick, @required this.child}):super(child:child);
+
+  @override
+  PopupMenuItemState<T, PopupMenuItem<T>> createState() {
+    return MyPopMenuItemState();
+  }
+}
+
+class MyPopMenuItemState<T, PopupMenuItem> extends PopupMenuItemState<T, MyPopMenuItem<T>> {
+
+  @override
+  void handleTap() {
+    widget.onClick();
+    Navigator.pop(context);
   }
 }
