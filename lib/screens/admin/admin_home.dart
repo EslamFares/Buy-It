@@ -1,7 +1,7 @@
 import 'package:buyit_ecommerce_app/screens/admin/add_product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:buyit_ecommerce_app/screens/admin/edit_product.dart';
+import 'package:buyit_ecommerce_app/screens/admin/mange_product.dart';
 class AdminHome extends StatelessWidget {
   static String id = 'AdminHome';
   @override
@@ -49,11 +49,11 @@ class AdminHome extends StatelessWidget {
                 children: <Widget>[
                   Icon(Icons.edit,color: Colors.white,),
                   SizedBox(width: 15,),
-                  Text('Edit Product',style: TextStyle(color: Colors.black),),
+                  Text('Mange Product',style: TextStyle(color: Colors.black),),
                 ],
               ),
               onPressed: (){
-                Navigator.pushNamed(context, EditProduct.id);
+                Navigator.pushNamed(context, MangeProduct.id);
               },
             ),
           ),
