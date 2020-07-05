@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'admin/admin_home.dart';
-import 'user/home_screen.dart';
+import 'user/home_page.dart';
 
 class LoginScreen extends StatelessWidget {
   static String id = 'LoginScreen';
@@ -158,7 +158,8 @@ class LoginScreen extends StatelessWidget {
       if (Provider.of<AdminMode>(context, listen: false).isAdmin) {
         if (_password == adminPassword) {
           try {
-            await _auth.signIn(_email, _password);
+            //trim() to remove eny spaces after email when user write to avoid error
+            await _auth.signIn(_email.trim(), _password.trim());
             Navigator.pushNamed(context, AdminHome.id);
           } catch (e) {
             modelhud.changeisLoading(false);

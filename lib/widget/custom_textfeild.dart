@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final Function onClick;
+  final String initialValue;
   String _errorMessage(String str) {
     switch (hint) {
       case 'Enter Your Name':
@@ -17,15 +18,16 @@ class CustomTextField extends StatelessWidget {
   }
 
   const CustomTextField(
-      {@required this.hint, this.icon, @required this.onClick});
+      {@required this.hint, this.icon, @required this.onClick, this.initialValue});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: TextFormField(
+        initialValue: initialValue,
         minLines: 1,
-        maxLines:hint=='Enter Your Password'||hint=='Enter Your Name'||hint=='Enter Your Email'?1:3 ,
+        maxLines:hint=='Product Description'?3:1,
         // ignore: missing_return
         validator: (value) {
           if (value.isEmpty) {

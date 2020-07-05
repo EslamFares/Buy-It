@@ -13,7 +13,7 @@ class AddProduct extends StatelessWidget {
       backgroundColor: ThemeData.dark().scaffoldBackgroundColor, //(0xff2B2B2B)
       appBar: AppBar(
         title: Text('AddProduct'),
-        backgroundColor: ThemeData.dark().secondaryHeaderColor,
+        backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         child: Form(

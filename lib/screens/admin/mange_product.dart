@@ -23,7 +23,7 @@ class _MangeProductState extends State<MangeProduct> {
       backgroundColor: ThemeData.dark().scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text('Mange Product'),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.amber,
       ),
       //to await data to load then show it
       body: StreamBuilder<QuerySnapshot>(
@@ -62,7 +62,8 @@ class _MangeProductState extends State<MangeProduct> {
                           items: [
                             MyPopMenuItem(
                               onClick: ()  {
-                                Navigator.pushNamed(context, EditProduct.id);
+                                //arguments to take info of product (we need document id)
+                                Navigator.pushNamed(context, EditProduct.id,arguments: products[index]);
                               },
                               child: Row(
                                 children: <Widget>[
@@ -83,7 +84,8 @@ class _MangeProductState extends State<MangeProduct> {
                                       LButtonName: 'cancel',
                                       LbuttonOnClock: (){Navigator.pop(context);},
                                       RButtonName: 'Delete',
-                                      RbuttonOnClock: (){_store.deleteProduct(products[index].pId);
+                                      RbuttonOnClock: (){
+                                      _store.deleteProduct(products[index].pId);
                                       Navigator.pop(context);},
 
                                     );
@@ -163,7 +165,7 @@ class _MangeProductState extends State<MangeProduct> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Loading...'),
+                  Text('Loading...',style: TextStyle(color: Colors.white),),
                   SizedBox(
                     height: 5,
                   ),

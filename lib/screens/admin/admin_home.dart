@@ -7,9 +7,11 @@ class AdminHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeData.dark().scaffoldBackgroundColor,
+      backgroundColor: Color(0xFF343442),
       appBar: AppBar(
-        title: Text('Admin Page'),
+        backgroundColor: Colors.blue.withOpacity(.8),
+        title: Text('Admin Page',style: TextStyle(color: Colors.white),),
+        centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -17,18 +19,18 @@ class AdminHome extends StatelessWidget {
         children: <Widget>[
           SizedBox(width: double.infinity,),
           Container(
-            width: 200,
+            width: 250,
             child: RaisedButton(
               shape: StadiumBorder(),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              color: Colors.grey,
+              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+              color: Colors.blue,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.add,color: Colors.white,),
-                  SizedBox(width: 15,),
-                  Text('Add Product',style: TextStyle(color: Colors.black),),
+                  Icon(Icons.add,color: Colors.black,),
+                  SizedBox(width: 25,),
+                  Text('Add Product',style: TextStyle(color: Colors.white),),
                 ],
               ),
               onPressed: (){
@@ -36,20 +38,20 @@ class AdminHome extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 30,),
           Container(
-            width: 200,
+            width: 250,
             child: RaisedButton(
               shape: StadiumBorder(),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              color: Colors.grey,
+              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+              color: Colors.teal,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.edit,color: Colors.white,),
-                  SizedBox(width: 15,),
-                  Text('Mange Product',style: TextStyle(color: Colors.black),),
+                  Icon(Icons.edit,color: Colors.black,),
+                  SizedBox(width: 20,),
+                  Text('Mange Product',style: TextStyle(color: Colors.white),),
                 ],
               ),
               onPressed: (){
@@ -57,20 +59,20 @@ class AdminHome extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 30,),
           Container(
-            width: 200,
+            width: 250,
             child: RaisedButton(
               shape: StadiumBorder(),
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
               color: Colors.grey,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.reorder,color: Colors.white,),
-                  SizedBox(width: 15,),
-                  Text('View orders',style: TextStyle(color: Colors.black),),
+                  Icon(Icons.reorder,color: Colors.black,),
+                  SizedBox(width: 20,),
+                  Text('View orders',style: TextStyle(color: Colors.white),),
                 ],
               ),
               onPressed: (){},
