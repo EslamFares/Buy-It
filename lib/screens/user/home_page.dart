@@ -109,6 +109,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        //Buyit and cart
         Material(
           color: kBackgroundUserColor,
           child: Container(
@@ -146,6 +147,7 @@ class _HomePageState extends State<HomePage> {
             List<Product> products = [];
             for (var doc in snapshot.data.documents) {
               var data = doc.data;
+              if(doc[kProductCategory]=='jackets')
               products.add(Product(
                   pId: doc.documentID,
                   pName: data[kProductName],
