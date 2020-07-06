@@ -6,6 +6,7 @@ import 'file:///C:/Users/Eng%20Eslam/AndroidStudioProjects/buyit_ecommerce_app/l
 import 'file:///C:/Users/Eng%20Eslam/AndroidStudioProjects/buyit_ecommerce_app/lib/screens/user/home_page.dart';
 import 'package:buyit_ecommerce_app/screens/login_screen.dart';
 import 'package:buyit_ecommerce_app/screens/signup_screen.dart';
+import 'package:buyit_ecommerce_app/screens/user/product_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/admin/mange_product.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           AddProduct.id: (context) => AddProduct(),
           MangeProduct.id: (context) => MangeProduct(),
           EditProduct.id: (context) => EditProduct(),
+          ProductInfo.id: (context) => ProductInfo(),
         },
       ),
     );

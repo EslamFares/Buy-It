@@ -1,5 +1,6 @@
 import 'package:buyit_ecommerce_app/constants.dart';
 import 'package:buyit_ecommerce_app/models/product.dart';
+import 'package:buyit_ecommerce_app/screens/user/product_info.dart';
 import 'package:buyit_ecommerce_app/services/auth.dart';
 import 'package:buyit_ecommerce_app/services/store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +18,9 @@ Widget ProductVeiw_User(String pCategory,List<Product> allProducts) {
     itemBuilder: (context, index) => Padding(
       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, ProductInfo.id,arguments: products[index]);
+        },
         child: Material(
           color: kBackgroundUserColor,
           elevation: 20,

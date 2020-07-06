@@ -1,5 +1,6 @@
 import 'package:buyit_ecommerce_app/constants.dart';
 import 'package:buyit_ecommerce_app/models/product.dart';
+import 'package:buyit_ecommerce_app/screens/user/product_info.dart';
 import 'package:buyit_ecommerce_app/services/auth.dart';
 import 'package:buyit_ecommerce_app/services/store.dart';
 import 'package:buyit_ecommerce_app/widget/productveiw_user.dart';
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   FirebaseUser _loggedUser;
   int _tabBarIndex = 0;
   final _store = Store();
-  int _bottomNavigationBar=0;
+  int _bottomNavigationBar = 0;
   List<Product> _products;
   @override
   void initState() {
@@ -41,16 +42,21 @@ class _HomePageState extends State<HomePage> {
           length: 4,
           child: Scaffold(
             bottomNavigationBar: BottomNavigationBar(
-              onTap: (value){setState(() {
-                _bottomNavigationBar=value;
-              });},
+              onTap: (value) {
+                setState(() {
+                  _bottomNavigationBar = value;
+                });
+              },
               currentIndex: _bottomNavigationBar,
               backgroundColor: kBackgroundUserColor,
               elevation: 10,
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.home),title: Text('Home')),
-                BottomNavigationBarItem(icon: Icon(Icons.search),title: Text('Search')),
-                BottomNavigationBarItem(icon: Icon(Icons.person),title: Text('Profile')),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home), title: Text('Home')),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.search), title: Text('Search')),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person), title: Text('Profile')),
               ],
             ),
             backgroundColor: kBackgroundUserColor,
@@ -108,15 +114,15 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: ProductVeiw_User(kTrousers,_products),
+                  child: ProductVeiw_User(kTrousers, _products),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: ProductVeiw_User(kTshirts,_products),
+                  child: ProductVeiw_User(kTshirts, _products),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: ProductVeiw_User(kShoes,_products),
+                  child: ProductVeiw_User(kShoes, _products),
                 ),
               ],
             ),
@@ -173,14 +179,16 @@ class _HomePageState extends State<HomePage> {
             // without it they will  be same and when  products.clear() data will delete from 2
             _products = [...products];
             products.clear();
-           products = getProductByCategory(kJackets,_products);
+            products = getProductByCategory(kJackets, _products);
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: .8),
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, ProductInfo.id,arguments: products[index]);
+                  },
                   child: Material(
                     color: kBackgroundUserColor,
                     elevation: 20,
@@ -249,7 +257,9 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 5,
                 ),
-                CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.amber),),
+                CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.amber),
+                ),
               ],
             ));
           }
