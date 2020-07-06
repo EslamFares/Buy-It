@@ -10,3 +10,7 @@ const kProductCategory = 'productCategory';
 const kProductsCollection = 'Products';
 const kBackgroundUserColor = Color(0xff343442);
 const kUnActiveColor = Color(0xff777781);
+const kJackets='jackets';
+const kTrousers='Trousers';
+const kTshirts='T-shirts';
+const kShoes='Shoes';

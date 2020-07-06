@@ -22,7 +22,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int heightScreen = MediaQuery.of(context).size.height.toInt();
-    int widthScreen = MediaQuery.of(context).size.width.toInt();
     return Scaffold(
       backgroundColor: KMainColor,
       body: ModalProgressHUD(

@@ -4,8 +4,6 @@ import 'package:buyit_ecommerce_app/widget/custom_textfeild.dart';
 import 'package:buyit_ecommerce_app/widget/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-
 class AddProduct extends StatefulWidget {
   static String id = 'AddProduct';
 

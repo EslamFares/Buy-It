@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   int _tabBarIndex = 0;
   final _store = Store();
   int _bottomNavigationBar=0;
+  List<Product> _products;
   @override
   void initState() {
     getCurrentUser();
@@ -102,9 +103,18 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 5),
                   child: jacketView(),
                 ),
-                Text('test2'),
-                Text('test3'),
-                Text('test4'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: ProductVeiw_User(kTrousers,_products),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: ProductVeiw_User(kTshirts,_products),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: ProductVeiw_User(kShoes,_products),
+                ),
               ],
             ),
           ),
@@ -147,7 +157,7 @@ class _HomePageState extends State<HomePage> {
             List<Product> products = [];
             for (var doc in snapshot.data.documents) {
               var data = doc.data;
-              if(doc[kProductCategory]=='jackets')
+
               products.add(Product(
                   pId: doc.documentID,
                   pName: data[kProductName],
@@ -156,7 +166,11 @@ class _HomePageState extends State<HomePage> {
                   pDescription: data[kProductDescription],
                   pPrice: data[kProductPrice]));
             }
-
+            //'[... ___ ]'to take only the value of products in _products
+            // without it they will  be same and when  products.clear() data will delete from 2
+            _products = [...products];
+            products.clear();
+           products = getProductByCategory(kJackets,_products);
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: .8),
@@ -238,4 +252,85 @@ class _HomePageState extends State<HomePage> {
           }
         });
   }
+
+  List<Product> getProductByCategory(String kJackets,List<Product> allProducts) {
+    List<Product> products=[];
+    try{
+      for(var product in allProducts){
+        if(product.pCategory==kJackets){
+          products.add(product);
+        }
+      }}on Error catch(ex){
+      print(ex);
+    }
+    return products;
+  }
+
+  Widget ProductVeiw_User(String pCategory,List<Product> allProducts) {
+    List<Product> products;
+    products = getProductByCategory(pCategory,allProducts);
+    return  GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, childAspectRatio: .8),
+      itemBuilder: (context, index) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        child: GestureDetector(
+          onTap: () {},
+          child: Material(
+            color: kBackgroundUserColor,
+            elevation: 20,
+            borderRadius: BorderRadius.circular(15.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                  border: Border.all(
+                    color: kBackgroundUserColor,
+                    width: 1,
+                  )),
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: Image(
+                      image: AssetImage(products[index].pLocation),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width,
+                      color: kBackgroundUserColor.withOpacity(.5),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Name: ${products[index].pName}",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Price: ${products[index].pPrice}\$',
+                              style:
+                              TextStyle(color: Colors.amberAccent),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+//                          ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      itemCount: products.length,
+    );
+  }
+
 }
