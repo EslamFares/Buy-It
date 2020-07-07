@@ -144,7 +144,9 @@ class _ProductInfoState extends State<ProductInfo> {
                       shape: StadiumBorder(),
                       child: RaisedButton(
                         color: Colors.amber,
-                        onPressed: () {},
+                        onPressed: () {
+
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -205,7 +207,7 @@ class _ProductInfoState extends State<ProductInfo> {
   }
 
   subtract() {
-    if(_quantity>0){
+    if(_quantity>1){
      setState(() {
        _quantity--;
      });
