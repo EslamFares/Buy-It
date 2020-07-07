@@ -8,5 +8,9 @@ addProduct(Product product){
   products.add(product);
   notifyListeners();
 }
+deleteProduct(Product product){
+  products.remove(product);
+  notifyListeners();
+}
 
 }

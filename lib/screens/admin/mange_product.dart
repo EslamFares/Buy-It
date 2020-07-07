@@ -1,5 +1,6 @@
 import 'package:buyit_ecommerce_app/models/product.dart';
 import 'package:buyit_ecommerce_app/services/store.dart';
+import 'package:buyit_ecommerce_app/widget/custom_menu.dart';
 import 'package:buyit_ecommerce_app/widget/showAlertDialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -180,23 +181,3 @@ class _MangeProductState extends State<MangeProduct> {
 
 
 
-
-class MyPopMenuItem<T> extends PopupMenuItem<T> {
-  final Widget child;
-  final Function onClick;
-  MyPopMenuItem({@required this.onClick, @required this.child})
-      : super(child: child);
-
-  @override
-  PopupMenuItemState<T, PopupMenuItem<T>> createState() {
-    return MyPopMenuItemState();
-  }
-}
-
-class MyPopMenuItemState<T, PopupMenuItem>
-    extends PopupMenuItemState<T, MyPopMenuItem<T>> {
-  @override
-  void handleTap() {
-    widget.onClick();
-  }
-}

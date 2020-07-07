@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Floatngalert({@required BuildContext context,@required String content}){
+Floatngalert({@required BuildContext context,@required String content,@required double width}){
   Scaffold.of(context).showSnackBar(SnackBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -10,7 +10,7 @@ Floatngalert({@required BuildContext context,@required String content}){
         children: <Widget>[
           Container(
               margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height/4),
-              width: 200,
+              width: width,
               decoration: BoxDecoration(
                   color: Colors.grey[400],
                   borderRadius: BorderRadius.circular(50)),
