@@ -1,11 +1,13 @@
 import 'package:buyit_ecommerce_app/provider/Admin_mode.dart';
+import 'package:buyit_ecommerce_app/provider/cart_item.dart';
 import 'package:buyit_ecommerce_app/provider/modelHud.dart';
 import 'package:buyit_ecommerce_app/screens/admin/add_product.dart';
+import 'package:buyit_ecommerce_app/screens/admin/admin_home.dart';
 import 'package:buyit_ecommerce_app/screens/admin/edit_product.dart';
-import 'file:///C:/Users/Eng%20Eslam/AndroidStudioProjects/buyit_ecommerce_app/lib/screens/admin/admin_home.dart';
-import 'file:///C:/Users/Eng%20Eslam/AndroidStudioProjects/buyit_ecommerce_app/lib/screens/user/home_page.dart';
 import 'package:buyit_ecommerce_app/screens/login_screen.dart';
 import 'package:buyit_ecommerce_app/screens/signup_screen.dart';
+import 'package:buyit_ecommerce_app/screens/user/cart_screen.dart';
+import 'package:buyit_ecommerce_app/screens/user/home_page.dart';
 import 'package:buyit_ecommerce_app/screens/user/product_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<AdminMode>(
           create: (context) => AdminMode(),
+        ),
+        ChangeNotifierProvider<CartItem>(
+          create: (context) => CartItem(),
         )
       ],
       child: MaterialApp(
@@ -44,6 +49,7 @@ class MyApp extends StatelessWidget {
           MangeProduct.id: (context) => MangeProduct(),
           EditProduct.id: (context) => EditProduct(),
           ProductInfo.id: (context) => ProductInfo(),
+          CartScreen.id: (context) => CartScreen(),
         },
       ),
     );

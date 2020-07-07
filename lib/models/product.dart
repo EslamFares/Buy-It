@@ -5,11 +5,14 @@ class Product {
   String pCategory;
   String pDescription;
   String pId;
+  int pQuantity;
 
   Product(
-      {this.pName,
+      {this.pQuantity,
+      this.pName,
       this.pPrice,
       this.pLocation,
       this.pCategory,
-      this.pDescription,this.pId});
+      this.pDescription,
+      this.pId});
 }

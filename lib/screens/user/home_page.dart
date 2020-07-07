@@ -1,5 +1,6 @@
 import 'package:buyit_ecommerce_app/constants.dart';
 import 'package:buyit_ecommerce_app/models/product.dart';
+import 'package:buyit_ecommerce_app/screens/user/cart_screen.dart';
 import 'package:buyit_ecommerce_app/screens/user/product_info.dart';
 import 'package:buyit_ecommerce_app/services/auth.dart';
 import 'package:buyit_ecommerce_app/services/store.dart';
@@ -146,9 +147,15 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Icon(
-                  Icons.shopping_cart,
-                  color: Colors.amber,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, CartScreen.id);
+                  },
+                  child: Icon(
+                    Icons.shopping_cart,
+                    size: 30,
+                    color: Colors.amber,
+                  ),
                 ),
               ],
             ),
@@ -187,7 +194,8 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, ProductInfo.id,arguments: products[index]);
+                    Navigator.pushNamed(context, ProductInfo.id,
+                        arguments: products[index]);
                   },
                   child: Material(
                     color: kBackgroundUserColor,
