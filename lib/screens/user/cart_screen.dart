@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
                     screenHeight / 16 -
                     appBarHeight -
                     statusBArHeight -
-                    15,
+                    30,
                 child: ListView.builder(
                   itemBuilder: (context, index) {
                     return Padding(
@@ -173,10 +173,7 @@ class CartScreen extends StatelessWidget {
             } else {
               return Container(
                 height: screenHeight -
-                    screenHeight / 16 -
-                    appBarHeight -
-                    statusBArHeight -
-                    15,
+                    screenHeight / 16 - appBarHeight - statusBArHeight - 30,
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

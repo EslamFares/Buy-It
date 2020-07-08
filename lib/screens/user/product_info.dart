@@ -150,7 +150,7 @@ class _ProductInfoState extends State<ProductInfo> {
                       width: 30,
                     ),
                     ButtonTheme(
-                      minWidth: 270,
+                      minWidth: 170,
                       height: 55,
                       shape: StadiumBorder(),
                       //Builder to use SnackBar without ERROR
@@ -251,7 +251,7 @@ class _ProductInfoState extends State<ProductInfo> {
       FloatAlert(
           context: context,
           content: "you've added this item before",
-          width: 300);
+          width: 250);
     } else {
       cartItem.addProduct(product);
       FloatAlert(context: context, content: "Added to Cart", width: 200);

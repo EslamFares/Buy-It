@@ -136,13 +136,13 @@ class OrderDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         ButtonTheme(
                           shape: StadiumBorder(),
-                          minWidth: 180,
+                          minWidth: 120,
                           child: RaisedButton(
                             onPressed: (){},
                             child: Row(
@@ -157,7 +157,7 @@ class OrderDetails extends StatelessWidget {
                         ),
                         ButtonTheme(
                           shape: StadiumBorder(),
-                          minWidth: 180,
+                          minWidth: 120,
                           buttonColor: Colors.red,
                           child: RaisedButton(
                             onPressed: (){

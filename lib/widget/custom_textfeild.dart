@@ -37,7 +37,7 @@ class CustomTextField extends StatelessWidget {
         },
         obscureText: hint=='Enter Your Password'?true:false,
         onSaved: onClick,
-        cursorColor: kSecColor,
+        cursorColor: Colors.white,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 18),
           hintText: hint,
