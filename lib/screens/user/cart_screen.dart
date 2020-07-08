@@ -51,12 +51,12 @@ class CartScreen extends StatelessWidget {
                           showCustomMenu(details, context, products[index]);
                         },
                         child: Container(
-                          height: screenHeight * .15,
+                          height: screenHeight * .16,
                           width: screenWidth,
                           padding: EdgeInsets.all(5.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
-                            color: kUnActiveColor,
+                            color: kSecColor,
                           ),
                           child: Row(
                             children: <Widget>[
@@ -70,62 +70,94 @@ class CartScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            products[index].pName,
-                                            style: TextStyle(
-                                                letterSpacing: 1.2,
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            '${products[index].pPrice} \$',
-                                            style: TextStyle(
-                                                color: Colors.greenAccent,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Container(
-                                        width: 35,
-                                        height: 35,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            border: Border.all(
-                                                color: Colors.amber, width: 2)),
-                                        child: Center(
-                                          child: Text(
-                                            products[index]
-                                                .pQuantity
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Text(
+                                                products[index].pName,
+                                                style: TextStyle(
+                                                    letterSpacing: 1.2,
+                                                    color: Colors.white,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                '${products[index].pPrice} \$',
+                                                style: TextStyle(
+                                                    color: Colors.greenAccent,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
                                           ),
                                         ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                border: Border.all(
+                                                    color: Colors.amber,
+                                                    width: 2)),
+                                            child: Center(
+                                              child: Text(
+                                                products[index]
+                                                    .pQuantity
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Container(
+                                      width: 150,
+                                      height: 35,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          border: Border.all(
+                                              color: Colors.amber, width: 2)),
+                                      child: Center(
+                                        child: Text(
+                                          'Total : ${int.parse(products[index].pPrice) * products[index].pQuantity.toInt()} \$',
+                                          style: TextStyle(
+                                              color: Colors.greenAccent,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )
@@ -170,7 +202,7 @@ class CartScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10, top: 5),
             child: Builder(
-              builder:(context)=> ButtonTheme(
+              builder: (context) => ButtonTheme(
                 minWidth: 300,
                 height: screenHeight / 16,
                 child: RaisedButton(
@@ -265,19 +297,26 @@ class CartScreen extends StatelessWidget {
         ),
         MaterialButton(
           onPressed: () {
-            try{
-            Store _store = Store();
-            _store.storeOrders({
-              kTotalPrice: price,
-              kAddress: address,
-            }, products);
+            try {
+              Store _store = Store();
+              _store.storeOrders({
+                kTotalPrice: price,
+                kAddress: address,
+              }, products);
 
-            FloatAlert(context: context,content: 'Ordered Successfully',width: 250);
-            Navigator.pop(context);
-          }catch(ex){
+              FloatAlert(
+                  context: context,
+                  content: 'Ordered Successfully',
+                  width: 250);
+              Navigator.pop(context);
+            } catch (ex) {
               print(ex.message);
-            }},
-          child: Text('OK'),
+            }
+          },
+          child: Text(
+            'OK',
+            style: TextStyle(color: Colors.red),
+          ),
         ),
       ],
       backgroundColor: Colors.white,
@@ -291,7 +330,11 @@ class CartScreen extends StatelessWidget {
         },
         decoration: InputDecoration(
             hintText: 'Enter your Address',
-            prefixIcon: Icon(Icons.location_on)),
+            prefixIcon: Icon(
+              Icons.location_on,
+              color: Colors.amber,
+              size: 25,
+            )),
       ),
       title: Row(
         children: <Widget>[

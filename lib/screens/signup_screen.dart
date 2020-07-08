@@ -19,7 +19,7 @@ class SignUPScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     int heightScreen = MediaQuery.of(context).size.height.toInt();
     return Scaffold(
-      backgroundColor: KMainColor,
+      backgroundColor: kBackgroundUserColor,
       body: ModalProgressHUD(
         //take it's value(true or false from provider (method that return true or false)
         //Based on the value that method return (true=> ModalProgressHUD is show) & (FALSE=> ModalProgressHUD is Don't show)
@@ -66,7 +66,9 @@ class SignUPScreen extends StatelessWidget {
                 child: Builder(
                   builder: (context) => FlatButton(
                     padding: EdgeInsets.all(12),
-                    shape: StadiumBorder(),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        side: BorderSide(color: Colors.white,width: 2)),
                     child: Text(
                       'Sign UP',
                       style: TextStyle(
@@ -130,7 +132,7 @@ class SignUPScreen extends StatelessWidget {
                     child: Text(
                       "Login",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.amber,
                           letterSpacing: 1.2,
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.bold,

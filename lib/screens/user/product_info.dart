@@ -134,7 +134,7 @@ class _ProductInfoState extends State<ProductInfo> {
                       onTap: subtract,
                       child: ClipOval(
                         child: Material(
-                          color: kUnActiveColor,
+                          color: kSecColor,
                           elevation: 10,
                           child: SizedBox(
                               width: 50,
@@ -198,7 +198,7 @@ class _ProductInfoState extends State<ProductInfo> {
                       onTap: add,
                       child: ClipOval(
                         child: Material(
-                          color: kUnActiveColor,
+                          color: kSecColor,
                           elevation: 15,
                           child: SizedBox(
                             width: 50,

@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                         color: _tabBarIndex == 0
                             ? Colors.white
-                            : kUnActiveColor.withOpacity(.4),
+                            : kSecColor.withOpacity(.4),
                         fontSize: _tabBarIndex == 0 ? 16 : null),
                   ),
                   Text(
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                         color: _tabBarIndex == 1
                             ? Colors.white
-                            : kUnActiveColor.withOpacity(.4),
+                            : kSecColor.withOpacity(.4),
                         fontSize: _tabBarIndex == 1 ? 16 : null),
                   ),
                   Text(
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                         color: _tabBarIndex == 2
                             ? Colors.white
-                            : kUnActiveColor.withOpacity(.4),
+                            : kSecColor.withOpacity(.4),
                         fontSize: _tabBarIndex == 2 ? 16 : null),
                   ),
                   Text(
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                         color: _tabBarIndex == 3
                             ? Colors.white
-                            : kUnActiveColor.withOpacity(.4),
+                            : kSecColor.withOpacity(.4),
                         fontSize: _tabBarIndex == 3 ? 16 : null),
                   ),
                 ],

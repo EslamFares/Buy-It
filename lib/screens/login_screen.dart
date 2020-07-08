@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     int heightScreen = MediaQuery.of(context).size.height.toInt();
     return Scaffold(
-      backgroundColor: KMainColor,
+      backgroundColor: kBackgroundUserColor,
       body: ModalProgressHUD(
         inAsyncCall: Provider.of<ModelHud>(context).isLoading,
         child: Form(
@@ -57,13 +57,15 @@ class LoginScreen extends StatelessWidget {
                 child: Builder(
                   builder: (context) => FlatButton(
                     padding: EdgeInsets.all(12),
-                    shape: StadiumBorder(),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        side: BorderSide(color: Colors.white,width: 2)),
                     child: Text(
                       'Login',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    color: Colors.black,
+                    color: kSecColor,
                     onPressed: () {
                       _validate(context);
                     },
@@ -91,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.amber,
                           letterSpacing: 1.2,
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.bold,
@@ -118,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                         color:
                             Provider.of<AdminMode>(context)
                                     .isAdmin
-                                ? KMainColor
+                                ? kBackgroundUserColor
                                 : Colors.white),
                       ),
                     ),
@@ -136,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                             Provider.of<AdminMode>(context, listen: true)
                                     .isAdmin
                                 ? Colors.white
-                                : KMainColor),
+                                : kBackgroundUserColor),
                       ),
                     ),
                   ],

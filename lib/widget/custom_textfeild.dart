@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: TextFormField(
+        style: TextStyle(color: Colors.white),
         initialValue: initialValue,
         minLines: 1,
         maxLines:hint=='Product Description'?3:1,
@@ -36,23 +37,24 @@ class CustomTextField extends StatelessWidget {
         },
         obscureText: hint=='Enter Your Password'?true:false,
         onSaved: onClick,
-        cursorColor: KMainColor,
+        cursorColor: kSecColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 18),
           hintText: hint,
+          hintStyle: TextStyle(color: Colors.white),
           prefixIcon: Icon(
             icon,
-            color: KMainColor,
+            color: Colors.amber,
           ),
-          fillColor: KSecColor,
+          fillColor: kSecColor,
           filled: true,
-          focusColor: KMainColor,
+          focusColor: kBackgroundUserColor,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: Colors.white, width: 2)),
+              borderSide: BorderSide(color: Colors.amber, width: 3)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: Colors.white, width: 2)),
+              borderSide: BorderSide(color: Colors.amber, width: 3)),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: Colors.red, width: 2)),
