@@ -3,6 +3,7 @@
 Build E-commerce app
 
 ## Getting Started
+<img src="https://github.com/EslamFares/Buy-It/blob/master/img/img_from_app/login.png" width="200" height="300" />
 
 This project is a starting point for a Flutter application.
 
