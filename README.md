@@ -5,8 +5,8 @@ Build E-commerce app
 ## Getting Started
 
 <p float="left">
-  <img src="https://github.com/EslamFares/Buy-It/blob/master/img_from_app/login.png" width="300" />
-  <img src="https://github.com/EslamFares/Buy-It/blob/master/img_from_app/signup.png" width="300" /> 
+  <img src="https://github.com/EslamFares/Buy-It/blob/master/img_from_app/login.png" width="200" />
+  <img src="https://github.com/EslamFares/Buy-It/blob/master/img_from_app/signup.png" width="200" /> 
 </p>
 
 
