@@ -9,19 +9,20 @@ Widget DropDownButtonFormFieldCategory({@required Function function}) {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 18),
         hintText: 'Product Category',
+        hintStyle: TextStyle(color: Colors.white),
         prefixIcon: Icon(
           Icons.category,
           color: KMainColor,
         ),
-        fillColor: KSecColor,
+        fillColor: kSecColor,
         filled: true,
         focusColor: KMainColor,
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: Colors.white, width: 2)),
+            borderSide: BorderSide(color: Colors.amber, width: 2)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: Colors.white, width: 2)),
+            borderSide: BorderSide(color: Colors.amber, width: 2)),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(color: Colors.red, width: 2)),

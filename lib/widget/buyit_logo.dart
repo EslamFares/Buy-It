@@ -38,11 +38,13 @@ class BuyitLogo extends StatelessWidget {
                 style: TextStyle(
                     foreground: Paint()
                       ..shader = ui.Gradient.linear(
-                        const Offset(100, 39),
+                        const Offset(100, 60),
                         const Offset(150, 23),
                         <Color>[
-                          Color(0xff0052c2),
-                          Colors.black,
+//                          Colors.black,
+                          Colors.grey,
+                          Colors.grey,
+//                          Color(0xff0052c2),
 
                         ],
                       ),

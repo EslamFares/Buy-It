@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                     padding: EdgeInsets.all(12),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                        side: BorderSide(color: Colors.white,width: 2)),
+                        side: BorderSide(color: Colors.white,width: 3)),
                     child: Text(
                       'Login',
                       style: TextStyle(

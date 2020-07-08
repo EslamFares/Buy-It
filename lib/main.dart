@@ -4,6 +4,8 @@ import 'package:buyit_ecommerce_app/provider/modelHud.dart';
 import 'package:buyit_ecommerce_app/screens/admin/add_product.dart';
 import 'package:buyit_ecommerce_app/screens/admin/admin_home.dart';
 import 'package:buyit_ecommerce_app/screens/admin/edit_product.dart';
+import 'package:buyit_ecommerce_app/screens/admin/order_details.dart';
+import 'package:buyit_ecommerce_app/screens/admin/order_screen.dart';
 import 'package:buyit_ecommerce_app/screens/login_screen.dart';
 import 'package:buyit_ecommerce_app/screens/signup_screen.dart';
 import 'package:buyit_ecommerce_app/screens/user/cart_screen.dart';
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
           EditProduct.id: (context) => EditProduct(),
           ProductInfo.id: (context) => ProductInfo(),
           CartScreen.id: (context) => CartScreen(),
+          OrderScreen.id: (context) => OrderScreen(),
+          OrderDetails.id: (context) => OrderDetails(),
         },
       ),
     );

@@ -74,7 +74,7 @@ class SignUPScreen extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    color: Colors.black,
+                    color: kSecColor,
                     onPressed: () async {
                       //"listen: false" in Provider very important  To avoid ERROR
                       final modelhud =

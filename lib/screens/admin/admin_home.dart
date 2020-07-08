@@ -1,4 +1,5 @@
 import 'package:buyit_ecommerce_app/screens/admin/add_product.dart';
+import 'package:buyit_ecommerce_app/screens/admin/order_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:buyit_ecommerce_app/screens/admin/mange_product.dart';
@@ -75,7 +76,9 @@ class AdminHome extends StatelessWidget {
                   Text('View orders',style: TextStyle(color: Colors.white),),
                 ],
               ),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushNamed(context, OrderScreen.id);
+              },
             ),
           ),
         ],
