@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Floatngalert({@required BuildContext context,@required String content,@required double width}){
+FloatAlert({@required BuildContext context,@required String content,@required double width}){
   Scaffold.of(context).showSnackBar(SnackBar(
       backgroundColor: Colors.transparent,
       elevation: 0,

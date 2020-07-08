@@ -1,7 +1,9 @@
 import 'package:buyit_ecommerce_app/models/product.dart';
 import 'package:buyit_ecommerce_app/provider/cart_item.dart';
 import 'package:buyit_ecommerce_app/screens/user/product_info.dart';
+import 'package:buyit_ecommerce_app/services/store.dart';
 import 'package:buyit_ecommerce_app/widget/custom_menu.dart';
+import 'package:buyit_ecommerce_app/widget/floating_alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +20,7 @@ class CartScreen extends StatelessWidget {
     final double statusBArHeight = MediaQuery.of(context).padding.top;
     final double appBarHeight = AppBar().preferredSize.height;
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: kBackgroundUserColor,
       appBar: AppBar(
         backgroundColor: kBackgroundUserColor,
@@ -45,7 +48,7 @@ class CartScreen extends StatelessWidget {
                           const EdgeInsets.only(top: 10, left: 5, right: 5),
                       child: GestureDetector(
                         onTapUp: (details) {
-                          showCustomMenu(details, context,products[index]);
+                          showCustomMenu(details, context, products[index]);
                         },
                         child: Container(
                           height: screenHeight * .15,
@@ -166,19 +169,21 @@ class CartScreen extends StatelessWidget {
           }),
           Padding(
             padding: const EdgeInsets.only(bottom: 10, top: 5),
-            child: ButtonTheme(
-              minWidth: 300,
-              height: screenHeight / 16,
-              child: RaisedButton(
-                shape: StadiumBorder(),
-                onPressed: () {
-                  print(screenHeight);
-                },
-                child: Text(
-                  'Order'.toUpperCase(),
-                  style: TextStyle(fontSize: 20, letterSpacing: 1.2),
+            child: Builder(
+              builder:(context)=> ButtonTheme(
+                minWidth: 300,
+                height: screenHeight / 16,
+                child: RaisedButton(
+                  shape: StadiumBorder(),
+                  onPressed: () {
+                    showCustomDialog(products, context);
+                  },
+                  child: Text(
+                    'Order'.toUpperCase(),
+                    style: TextStyle(fontSize: 20, letterSpacing: 1.2),
+                  ),
+                  color: Colors.amber,
                 ),
-                color: Colors.amber,
               ),
             ),
           )
@@ -187,7 +192,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  void showCustomMenu(details, context,product) async {
+  void showCustomMenu(details, context, product) async {
     //dx is position from  left || dy is position from Top
     double dx = details.globalPosition.dx;
     double dy = details.globalPosition.dy;
@@ -201,8 +206,9 @@ class CartScreen extends StatelessWidget {
           MyPopMenuItem(
             onClick: () {
               Navigator.pop(context);
-              Provider.of<CartItem>(context,listen: false).deleteProduct(product);
-              Navigator.pushNamed(context, ProductInfo.id,arguments: product);
+              Provider.of<CartItem>(context, listen: false)
+                  .deleteProduct(product);
+              Navigator.pushNamed(context, ProductInfo.id, arguments: product);
             },
             child: Row(
               children: <Widget>[
@@ -228,7 +234,8 @@ class CartScreen extends StatelessWidget {
                 RButtonName: 'Delete',
                 RbuttonOnClock: () {
                   Navigator.pop(context);
-                  Provider.of<CartItem>(context,listen: false).deleteProduct(product);
+                  Provider.of<CartItem>(context, listen: false)
+                      .deleteProduct(product);
                 },
               );
             },
@@ -243,5 +250,74 @@ class CartScreen extends StatelessWidget {
             ),
           ),
         ]);
+  }
+
+  void showCustomDialog(List<Product> products, context) async {
+    var price = getTotallPrice(products);
+    var address;
+    AlertDialog alertDialog = AlertDialog(
+      actions: <Widget>[
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Cancel'),
+        ),
+        MaterialButton(
+          onPressed: () {
+            try{
+            Store _store = Store();
+            _store.storeOrders({
+              kTotalPrice: price,
+              kAddress: address,
+            }, products);
+
+            FloatAlert(context: context,content: 'Ordered Successfully',width: 250);
+            Navigator.pop(context);
+          }catch(ex){
+              print(ex.message);
+            }},
+          child: Text('OK'),
+        ),
+      ],
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          side: BorderSide(color: Colors.redAccent, width: 3)),
+      elevation: 10,
+      content: TextField(
+        onChanged: (value) {
+          address = value;
+        },
+        decoration: InputDecoration(
+            hintText: 'Enter your Address',
+            prefixIcon: Icon(Icons.location_on)),
+      ),
+      title: Row(
+        children: <Widget>[
+          Text(
+            'Total Price : ',
+            style: TextStyle(color: Colors.black),
+          ),
+          Text(
+            '$price\$',
+            style: TextStyle(color: Colors.red[600]),
+          ),
+        ],
+      ),
+    );
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return alertDialog;
+        });
+  }
+
+  getTotallPrice(List<Product> products) {
+    var price = 0;
+    for (var product in products) {
+      price += product.pQuantity * int.parse(product.pPrice);
+    }
+    return price;
   }
 }

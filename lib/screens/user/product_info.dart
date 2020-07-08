@@ -240,17 +240,21 @@ class _ProductInfoState extends State<ProductInfo> {
   void addToCart(context, product) {
     CartItem cartItem = Provider.of<CartItem>(context, listen: false);
     product.pQuantity = _quantity;
-    bool exist=false;
+    bool exist = false;
     var productInCart = cartItem.products;
-    for(var productInCart in productInCart){
-      if(productInCart == product){
-        exist=true;
+    for (var productInCart in productInCart) {
+      if (productInCart.pName == product.pName) {
+        exist = true;
       }
     }
-    if(exist){
-      Floatngalert(context: context, content: "you've added this item before",width: 300);
-    }else{
-    cartItem.addProduct(product);
-    Floatngalert(context: context, content: "Added to Cart",width: 200);
-  }}
+    if (exist) {
+      FloatAlert(
+          context: context,
+          content: "you've added this item before",
+          width: 300);
+    } else {
+      cartItem.addProduct(product);
+      FloatAlert(context: context, content: "Added to Cart", width: 200);
+    }
+  }
 }
