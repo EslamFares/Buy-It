@@ -27,6 +27,7 @@ dependencies:
   cloud_firestore:
   flutter_launcher_icons: "^0.7.3"
   flutter_launcher_name: "^0.0.1"
+  shared_preferences: ^0.5.8
   flutter:
     sdk: flutter
 

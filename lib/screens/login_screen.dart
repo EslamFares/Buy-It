@@ -11,14 +11,28 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'admin/admin_home.dart';
 import 'user/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static String id = 'LoginScreen';
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   String _email, _password;
+
   final _auth = Auth();
+
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+
   bool isAdmin = false;
+
   final adminPassword = 'Admin1234';
+
+  bool keepMeLoggedIn=false;
+
   @override
   Widget build(BuildContext context) {
     int heightScreen = MediaQuery.of(context).size.height.toInt();
@@ -32,7 +46,7 @@ class LoginScreen extends StatelessWidget {
             children: <Widget>[
               BuyitLogo(heightScreen: heightScreen),
               SizedBox(
-                height: heightScreen * .13,
+                height: heightScreen * .11,
               ),
               CustomTextField(
                 onClick: (value) {
@@ -67,13 +81,34 @@ class LoginScreen extends StatelessWidget {
                     ),
                     color: kSecColor,
                     onPressed: () {
+                      if(keepMeLoggedIn==true){KeepUserLoggedIn();}
                       _validate(context);
                     },
                   ),
                 ),
               ),
+              SizedBox(height: 5),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Theme(
+                    data: ThemeData(unselectedWidgetColor: Colors.amber),
+                    child: Checkbox(
+                      activeColor: kSecColor,
+                      checkColor: Colors.amber,
+                      value: keepMeLoggedIn,
+                      onChanged: (value){setState(() {
+                        keepMeLoggedIn=value;
+                      });},
+                    ),
+                  ),
+                  Text('Remember me',style: TextStyle(color: Colors.white,fontSize: 14),),
+                ],
+              ),
               SizedBox(
-                height: heightScreen * .11, //.19
+                height: heightScreen * .09, //.19
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -186,5 +221,10 @@ class LoginScreen extends StatelessWidget {
       }
     }
     modelhud.changeisLoading(false);
+  }
+
+  void KeepUserLoggedIn()async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setBool(kKeepMeLoggedIn, keepMeLoggedIn);
   }
 }

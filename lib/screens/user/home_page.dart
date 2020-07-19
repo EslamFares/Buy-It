@@ -37,8 +37,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
+    final List<Widget> _children = [
+      HomeBottom(),
+      SearchBottom(),
+      ProfileBottom(),
+    ];
+    return
+//      Stack(
+//      children: <Widget>[
         DefaultTabController(
           length: 4,
           child: Scaffold(
@@ -59,87 +65,15 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), title: Text('Profile')),
               ],
+
             ),
             backgroundColor: kBackgroundUserColor,
-            appBar: AppBar(
-              backgroundColor: kBackgroundUserColor,
-              elevation: 0,
-              bottom: TabBar(
-                indicatorColor: Colors.amber,
-                onTap: (value) {
-                  setState(() {
-                    _tabBarIndex = value;
-                  });
-                },
-                tabs: <Widget>[
-                  Text(
-                    'Jackets',
-                    style: TextStyle(
-                        color: _tabBarIndex == 0
-                            ? Colors.white
-                            : kSecColor.withOpacity(.4),
-                        fontSize: _tabBarIndex == 0 ? 16 : null),
-                  ),
-                  Text(
-                    'Trousers',
-                    style: TextStyle(
-                        color: _tabBarIndex == 1
-                            ? Colors.white
-                            : kSecColor.withOpacity(.4),
-                        fontSize: _tabBarIndex == 1 ? 16 : null),
-                  ),
-                  Text(
-                    'T-shirts',
-                    style: TextStyle(
-                        color: _tabBarIndex == 2
-                            ? Colors.white
-                            : kSecColor.withOpacity(.4),
-                        fontSize: _tabBarIndex == 2 ? 16 : null),
-                  ),
-                  Text(
-                    'Shoes',
-                    style: TextStyle(
-                        color: _tabBarIndex == 3
-                            ? Colors.white
-                            : kSecColor.withOpacity(.4),
-                        fontSize: _tabBarIndex == 3 ? 16 : null),
-                  ),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: jacketView(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: ProductVeiw_User(kTrousers, _products),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: ProductVeiw_User(kTshirts, _products),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: ProductVeiw_User(kShoes, _products),
-                ),
-              ],
-            ),
-          ),
-        ),
-        //Buyit and cart
-        Material(
-          color: kBackgroundUserColor,
-          child: Container(
-            padding:
-                const EdgeInsets.only(top: 50, left: 25, right: 25, bottom: 5),
-            height: MediaQuery.of(context).size.height * .12,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(80),
+              child: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: kBackgroundUserColor,
+                title:  Text(
                   'Buy it',
                   style: TextStyle(
                     fontSize: 20,
@@ -147,22 +81,136 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, CartScreen.id);
-                  },
-                  child: Icon(
-                    Icons.shopping_cart,
-                    size: 30,
-                    color: Colors.amber,
+                actions: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, CartScreen.id);
+                      },
+                      child: Icon(
+                        Icons.shopping_cart,
+                        size: 30,
+                        color: Colors.amber,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+                elevation: 0,
+                   bottom:_bottomNavigationBar==0?  TabBar(
+                  unselectedLabelColor:kSecColor.withOpacity(.4),
+                  unselectedLabelStyle: TextStyle(fontSize: 14),
+                  labelStyle: TextStyle(color: Colors.white,fontSize: 16),
+                  labelColor: Colors.white,
+                  indicatorColor: Colors.amber,
+                  onTap: (value) {
+                    setState(() {
+                      _tabBarIndex = value;
+                    });
+                  },
+                  tabs: <Widget>[
+                    Text(
+                      'Jackets',
+//                    style: TextStyle(
+//                        color: _tabBarIndex == 0
+//                            ? Colors.white
+//                            : kSecColor.withOpacity(.4),
+//                        fontSize: _tabBarIndex == 0 ? 16 : null),
+                    ),
+                    Text(
+                      'Trousers',
+//                    style: TextStyle(
+//                        color: _tabBarIndex == 1
+//                            ? Colors.white
+//                            : kSecColor.withOpacity(.4),
+//                        fontSize: _tabBarIndex == 1 ? 16 : null),
+                    ),
+                    Text(
+                      'T-shirts',
+//                    style: TextStyle(
+//                        color: _tabBarIndex == 2
+//                            ? Colors.white
+//                            : kSecColor.withOpacity(.4),
+//                        fontSize: _tabBarIndex == 2 ? 16 : null),
+                    ),
+                    Text(
+                      'Shoes',
+//                    style: TextStyle(
+//                        color: _tabBarIndex == 3
+//                            ? Colors.white
+//                            : kSecColor.withOpacity(.4),
+//                        fontSize: _tabBarIndex == 3 ? 16 : null),
+                    ),
+                  ],
+                ):null,
+              ),
             ),
+            body: _children[_bottomNavigationBar]
+//            HomeButtom(),
           ),
-        )
-      ],
-    );
+        );
+        //Buyit and cart
+//        Material(
+//          color: kBackgroundUserColor,
+//          child: Container(
+//            padding:
+//                const EdgeInsets.only(top: 50, left: 25, right: 25, bottom: 5),
+//            height: MediaQuery.of(context).size.height * .12,
+//            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//              children: <Widget>[
+//                Text(
+//                  'Buy it',
+//                  style: TextStyle(
+//                    fontSize: 20,
+//                    color: Colors.amber,
+//                    fontWeight: FontWeight.bold,
+//                  ),
+//                ),
+//                GestureDetector(
+//                  onTap: () {
+//                    Navigator.pushNamed(context, CartScreen.id);
+//                  },
+//                  child: Icon(
+//                    Icons.shopping_cart,
+//                    size: 30,
+//                    color: Colors.amber,
+//                  ),
+//                ),
+//              ],
+//            ),
+//          ),
+//        )
+//      ],
+
+  }
+
+  Widget ProfileBottom() => Center(child: Text('profile'));
+
+  Widget SearchBottom() => Center(child: Text('Search'));
+
+  // ignore: non_constant_identifier_names
+  Widget HomeBottom() {
+    return TabBarView(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: jacketView(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: ProductVeiw_User(kTrousers, _products),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: ProductVeiw_User(kTshirts, _products),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: ProductVeiw_User(kShoes, _products),
+              ),
+            ],
+          );
   }
 
   Widget jacketView() {
