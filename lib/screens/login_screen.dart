@@ -94,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Theme(
-                    data: ThemeData(unselectedWidgetColor: Colors.amber),
+                    data: ThemeData(unselectedWidgetColor: Colors.amber,
+                    ),
                     child: Checkbox(
                       activeColor: kSecColor,
                       checkColor: Colors.amber,
